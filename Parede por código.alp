@@ -17,6 +17,53 @@
 			<Id>1589224754980</Id>
 			<Name><![CDATA[Main]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
+			<StartupCode><![CDATA[//Inicializar target Lines
+targetLineChegada = new TargetLine(this,
+									SHAPE_DRAW_2D,
+									true,
+									250,
+									100,
+									new double[]{0, 0,0},
+									new double[]{0, 50, 0},
+									green); // cor
+									
+targetLineSaidas = new TargetLine(this,
+									SHAPE_DRAW_2D,
+									true,
+									600,
+									100,
+									new double[]{0, 0,0},
+									new double[]{0, 50, 0},
+									green); // cor					
+
+// Iniciar Parede
+parede = new RectangularWall(this,
+								SHAPE_DRAW_2D3D,
+								true,
+								360,
+								70,
+								0,
+								150,
+								130,
+								0,
+								2,
+								20,
+								WALL_FILL_SOLID,
+								peru ); //cor
+
+//Criando e inicializando level
+myLevel = new Level(this, "myLevel", SHAPE_DRAW_2D3D, 0);
+
+//Adicionado objetos de animação ao level craido
+myLevel.addAll(targetLineChegada, targetLineSaidas, parede);
+
+//Inicialização do level
+myLevel.initialize();
+
+//Adicionando o level a presentation
+presentation.add(myLevel);
+
+]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1589224754978</Id>
@@ -112,14 +159,50 @@
 			<Variables>
 				<Variable Class="PlainVariable">
 					<Id>1596114480401</Id>
-					<Name><![CDATA[variable]]></Name>
-					<X>240</X><Y>390</Y>
+					<Name><![CDATA[targetLineChegada]]></Name>
+					<X>560</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[TargetLine]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1596115155124</Id>
+					<Name><![CDATA[parede]]></Name>
+					<X>560</X><Y>320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[RectangularWall]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1596115513122</Id>
+					<Name><![CDATA[targetLineSaidas]]></Name>
+					<X>560</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[TargetLine]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1596116427741</Id>
+					<Name><![CDATA[myLevel]]></Name>
+					<X>560</X><Y>360</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Level]]></Type>        
 					</Properties>
 				</Variable>
 			</Variables>
@@ -447,7 +530,7 @@
 						<Parameter>
 							<Name><![CDATA[locationLine]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[targetLineSaida]]></Code>
+								<Code><![CDATA[targetLineSaidas]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -599,57 +682,48 @@
 					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
 
 			<Presentation>
-				<TargetLine>
-					<Id>1589230100112</Id>
-					<Name><![CDATA[targetLineChegada]]></Name>
-					<X>250</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+				<Text>
+					<Id>1596117312639</Id>
+					<Name><![CDATA[text]]></Name>
+					<X>590</X><Y>50</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
-					<LineColor>-16744448</LineColor>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>50</Y></Point>
-					</Points>
-				</TargetLine>
-				<TargetLine>
-					<Id>1589230141801</Id>
-					<Name><![CDATA[targetLineSaida]]></Name>
-					<X>600</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<LineColor>-16744448</LineColor>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>50</Y></Point>
-					</Points>
-				</TargetLine>
-				<RectangleWall>
-					<Id>1589230207972</Id>
-					<Name><![CDATA[paredeRetangular]]></Name>
-					<X>360</X><Y>70</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
-					<LineWidth>2</LineWidth>
-					<LineMaterial>null</LineMaterial>
-					<FillingType>HATCHED_AREA</FillingType>
-					<ZHeight>20</ZHeight>
 					<Rotation>0.0</Rotation>
-					<Width>150</Width>
-					<Height>130</Height>
-				</RectangleWall>
+					<Color>-16777216</Color>
+					<Text><![CDATA[1) Criar]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1596117359162</Id>
+					<Name><![CDATA[text1]]></Name>
+					<X>590</X><Y>90</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[2) Criar]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
